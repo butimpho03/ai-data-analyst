@@ -36,6 +36,28 @@ def load_dataset(uploaded_file):
 
     try:
         if extension == "csv":
+            # WHY sep=None, engine="python":
+            # Not all CSV files actually use commas — some spreadsheet apps
+            # (depending on regional settings) export using semicolons
+            # instead. Setting sep=None tells pandas to detect the real
+            # delimiter automatically instead of assuming a comma, which
+            # avoids the whole file being read as one giant column.
+            df = pd.read_csv(uploaded_file, sep=None, engine="python")
+        elif extension == "xlsx":
+            df = pd.read_excel(uploaded_file)
+        else:
+            return None, f"Unsupported file type: .{extension}. Please upload a .csv or .xlsx file."
+    except Exception as e:
+        return None, f"Could not read this file. It may be corrupted or not a valid {extension.upper()} file. (Details: {e})"
+
+    if df.empty:
+        return None, "The file was read successfully, but it contains no data (0 rows)."
+
+    if len(df.columns) == 0:
+        return None, "The file was read successfully, but it contains no columns."
+
+    return df, None    try:
+        if extension == "csv":
             df = pd.read_csv(uploaded_file)
         elif extension == "xlsx":
             df = pd.read_excel(uploaded_file)

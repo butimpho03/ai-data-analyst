@@ -86,25 +86,4 @@ st.write("Charts will appear here.")
 
 # --- Section 7: Business Summary ---
 st.header("7. Business Summary")
-st.write("A written, manager-friendly summary will appear here.")# --- Section 3: Ask Your Question ---
-st.header("3. Ask Your Question")
-question = st.text_area(
-    "Type a business question about your data",
-    placeholder="e.g. Which store has the highest average sales?",
-)
-
-# --- Section 4: Analysis button ---
-if st.button("Analyse", type="primary", use_container_width=True):
-    st.warning("The analysis engine isn't built yet — coming in Phase 5.")
-
-# --- Section 5: Results ---
-st.header("5. Results")
-st.write("Tables and calculation results will appear here.")
-
-# --- Section 6: Charts ---
-st.header("6. Charts")
-st.write("Charts will appear here.")
-
-# --- Section 7: Business Summary ---
-st.header("7. Business Summary")
 st.write("A written, manager-friendly summary will appear here.")
